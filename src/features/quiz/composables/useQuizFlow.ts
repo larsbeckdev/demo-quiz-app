@@ -50,6 +50,7 @@ export function useQuizFlow(state: QuizState) {
 
     const q = currentQuestion.value;
     if (q) state.status = state.reviewed[q.id] ? "review" : "running";
+    else state.status = "running";
   }
 
   function prev() {
@@ -73,7 +74,7 @@ export function useQuizFlow(state: QuizState) {
     if (!state.quiz) return;
     if (!allAnswered.value) return;
 
-    // optional: alles als reviewed markieren, damit Result stabil ist
+    // für stabiles Result: alles reviewed
     for (const q of state.quiz.questions) state.reviewed[q.id] = true;
 
     state.status = "finished";
