@@ -12,6 +12,15 @@ function safeJsonParse<T>(value: string | null): T | null {
   }
 }
 
+type StoredRun = {
+  quizId: string;
+  score: number;
+  total: number;
+  finishedAt: number;
+  answers: Record<string, string[]>;
+  reviewed: Record<string, boolean>;
+};
+
 export function useQuizPersistence(
   state: QuizState,
   correctCount: { value: number },
@@ -19,23 +28,26 @@ export function useQuizPersistence(
 ) {
   function saveRun() {
     if (!state.quiz) return;
-    const payload = {
+
+    const payload: StoredRun = {
       quizId: state.quiz.id,
       score: correctCount.value,
       total: total.value,
       finishedAt: state.finishedAt ?? Date.now(),
+      answers: state.answers,
+      reviewed: state.reviewed,
     };
+
     localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
   }
 
   const lastRun = computed(() =>
-    safeJsonParse<{
-      quizId: string;
-      score: number;
-      total: number;
-      finishedAt: number;
-    }>(localStorage.getItem(STORAGE_KEY)),
+    safeJsonParse<StoredRun>(localStorage.getItem(STORAGE_KEY)),
   );
 
-  return { saveRun, lastRun };
+  function loadLastRun(): StoredRun | null {
+    return lastRun.value ?? null;
+  }
+
+  return { saveRun, lastRun, loadLastRun };
 }
