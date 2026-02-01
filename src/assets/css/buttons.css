@@ -1,0 +1,90 @@
+/* =========================
+   Button (Default)
+========================= */
+.btn {
+  font: inherit;
+  font-size: 1rem;
+  line-height: 1.2;
+  padding: 0.625rem 0.75rem;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  text-align: center;
+  background: var(--color-primary);
+  color: var(--color-primary-foreground);
+  transition: background-color 0.2s ease, transform 0.06s ease,
+    outline 0.2s ease;
+  opacity: 1;
+}
+
+.btn:hover {
+  outline: 2px solid var(--color-ring);
+  outline-offset: 2px;
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+
+/* =========================
+   Button (Secondary)
+========================= */
+
+.btn-secondary {
+  background: var(--color-secondary);
+  color: var(--color-secondary-foreground);
+  border-color: var(--color-border);
+}
+
+.btn-secondary:hover {
+  background: var(--color-secondary-hover);
+}
+
+.btn-secondary:active {
+  transform: translateY(1px);
+}
+
+/* =========================
+   Button (ghost)
+========================= */
+.btn-ghost {
+  background: transparent;
+  color: var(--color-foreground);
+  border-color: var(--color-border);
+}
+
+.btn-ghost:hover {
+  background: var(--color-input);
+}
+
+.btn-ghost:active {
+  transform: translateY(1px);
+}
+
+/* =========================
+   Button (outline)
+========================= */
+.btn-outline {
+  background: transparent;
+  color: var(--color-foreground);
+  border-color: var(--color-border);
+}
+
+.btn-outline:hover {
+  background: var(--color-input);
+}
+
+.btn-outline:active {
+  transform: translateY(1px);
+}
+
+/* =========================
+   Button (disabled)  
+========================= */
+.btn:disabled {
+  background: var(--color-muted);
+  color: var(--color-muted-foreground);
+  cursor: not-allowed;
+  opacity: 0.7;
+}

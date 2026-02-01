@@ -1,0 +1,20 @@
+/* =========================
+   Footer
+========================= */
+footer {
+  z-index: 50;
+  width: 100%;
+  font-size: 0.775rem;
+}
+
+.site-footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 4px;
+  height: 100%;
+  width: 100%;
+  padding: 16px;
+  text-align: center;
+}

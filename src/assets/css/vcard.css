@@ -1,0 +1,126 @@
+/* =========================
+   Intro
+========================= */
+.intro-text {
+  margin-top: 8px;
+  max-width: 640px;
+  opacity: 0.85;
+  text-align: center;
+}
+
+/* =========================
+   Section
+========================= */
+
+.vcard-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 660px;
+}
+
+/* =========================
+   Form
+========================= */
+.vcard-form {
+  display: grid;
+  gap: 12px;
+  margin-top: 16px;
+  width: 100%;
+}
+
+.form-group {
+  display: grid;
+  gap: 6px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+@media (max-width: 576px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =========================
+   Actions
+========================= */
+.form-actions {
+  display: flex;
+  gap: 64px;
+  margin-top: 8px;
+  justify-content: center;
+  padding: 32px 0;
+  flex-direction: column;
+}
+
+.form-actions button {
+  padding-inline: 50px;
+  border-radius: 8px;
+}
+
+.form-actions-main {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.form-actions-import-export {
+  width: 100%;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.form-actions-header-title {
+  text-align: center;
+}
+
+/* =========================
+   QR Preview
+========================= */
+.qr-preview-section {
+  display: flex;
+  gap: 12px;
+  flex-direction: column;
+  align-items: center;
+}
+
+.qr-box {
+  width: 260px;
+  height: 260px;
+  display: grid;
+  place-items: center;
+  background: var(--color-input);
+  border-radius: 12px;
+}
+
+.qr-box img {
+  border-radius: 8px;
+}
+
+.qr-download {
+  display: none;
+  width: fit-content;
+  font-size: 0.9rem;
+}
+
+/* =========================
+   Debug
+========================= */
+.vcard-debug {
+  margin-top: 6px;
+}
+
+.vcard-debug pre {
+  white-space: pre-wrap;
+  font-size: 0.8rem;
+  opacity: 0.8;
+}

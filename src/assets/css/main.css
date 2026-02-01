@@ -1,0 +1,43 @@
+/* =========================
+   IMPORT
+========================= */
+
+/* Reset  */
+/* @import './reset.css'; */
+
+/* @import './variables.css'; */
+/* @import './buttons.css'; */
+/* @import './inputs.css'; */
+/* @import './header.css'; */
+/* @import './footer.css'; */
+/* @import './layout.css'; */
+/* @import './typography.css'; */
+/* @import './utilities.css'; */
+/* @import './thememode.css'; */
+
+/* @import './sections.css'; */
+/* @import './vcard.css'; */
+
+/* =========================
+   Body 
+========================= */
+
+/* =========================
+   Main
+========================= */
+
+
+
+html, body {
+  min-height: 100%;
+}
+
+html[data-theme="light"] body {
+  background: oklch(0.985 0.006 240);
+  color: oklch(0.17 0.02 255);
+}
+
+html[data-theme="dark"] body {
+  background: oklch(0.13 0.02 255);
+  color: oklch(0.95 0.01 255);
+}
