@@ -12,8 +12,6 @@ const DEFAULT_QUIZ_ID = "web-basics-50";
 function onStart() {
   quiz.startById(DEFAULT_QUIZ_ID);
 }
-
-import { NCard, NSpace, NText, NAlert, NButton } from "naive-ui";
 </script>
 
 <template>
