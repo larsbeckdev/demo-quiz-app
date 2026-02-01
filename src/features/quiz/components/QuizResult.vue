@@ -118,8 +118,9 @@ const filteredQuestions = computed(() => {
 
         <n-radio-group v-model:value="filter" size="small">
           <n-radio-button value="all">Alle</n-radio-button>
-          <n-radio-button value="wrong">Nur falsch</n-radio-button>
-          <n-radio-button value="open">Nur offen</n-radio-button>
+          <n-radio-button value="correct">Richtig</n-radio-button>
+          <n-radio-button value="wrong">Falsch</n-radio-button>
+          <n-radio-button value="open">Offen</n-radio-button>
         </n-radio-group>
       </n-space>
 
