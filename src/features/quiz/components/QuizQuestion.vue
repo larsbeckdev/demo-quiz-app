@@ -75,9 +75,15 @@ function onPick(choiceId: string) {
           v-for="c in props.question.choices"
           :key="c.id"
           strong
-          secondary
+          :secondary="!isSelected(c.id)"
+          :type="isSelected(c.id) ? 'primary' : 'default'"
           style="width: 100%; justify-content: space-between"
-          :class="choiceClass(c.id)"
+          :class="[
+            props.status === 'running' && isSelected(c.id)
+              ? 'choice--selected'
+              : '',
+            choiceClass(c.id),
+          ]"
           @click="onPick(c.id)">
           <span>{{ c.text }}</span>
         </n-button>
