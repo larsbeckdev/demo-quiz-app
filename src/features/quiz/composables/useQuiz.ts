@@ -1,5 +1,6 @@
 import { computed, reactive } from "vue";
 import type { Quiz, QuizState } from "../types/quiz.types";
+import { getQuizById } from "../data";
 
 const STORAGE_KEY = "quizapp:lastRun";
 
@@ -29,9 +30,13 @@ export function useQuiz() {
 
   const progressPct = computed(() => {
     if (total.value === 0) return 0;
-    // 1-basierter Fortschritt, aber capped
-    const done = Math.min(state.currentIndex + (state.status === "finished" ? 1 : 0), total.value);
-    return Math.round((done / total.value) * 100);
+
+    // Fortschritt = beantwortete Fragen / total
+    const answeredCount = state.quiz
+      ? state.quiz.questions.filter((q) => state.answers[q.id]).length
+      : 0;
+
+    return Math.round((answeredCount / total.value) * 100);
   });
 
   const isLast = computed(() => state.currentIndex >= total.value - 1);
@@ -46,7 +51,7 @@ export function useQuiz() {
     if (!state.quiz) return 0;
     let s = 0;
     for (const q of state.quiz.questions) {
-      if (state.answers[q.id] && state.answers[q.id] === q.correctChoiceId) s++;
+      if (state.answers[q.id] === q.correctChoiceId) s++;
     }
     return s;
   });
@@ -55,6 +60,17 @@ export function useQuiz() {
     if (total.value === 0) return 0;
     return Math.round((score.value / total.value) * 100);
   });
+
+  function loadQuiz(quizId: string) {
+    const quiz = getQuizById(quizId);
+    if (!quiz) throw new Error(`Quiz not found: ${quizId}`);
+    return quiz;
+  }
+
+  function startById(quizId: string) {
+    const quiz = loadQuiz(quizId);
+    start(quiz);
+  }
 
   function start(quiz: Quiz) {
     state.quiz = quiz;
@@ -108,9 +124,14 @@ export function useQuiz() {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
   }
 
-  const lastRun = computed(() => safeJsonParse<{ quizId: string; score: number; total: number; finishedAt: number }>(
-    localStorage.getItem(STORAGE_KEY)
-  ));
+  const lastRun = computed(() =>
+    safeJsonParse<{
+      quizId: string;
+      score: number;
+      total: number;
+      finishedAt: number;
+    }>(localStorage.getItem(STORAGE_KEY)),
+  );
 
   return {
     state,
@@ -122,7 +143,9 @@ export function useQuiz() {
     score,
     scorePct,
     lastRun,
+    loadQuiz,
     start,
+    startById,
     selectAnswer,
     next,
     prev,
