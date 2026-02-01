@@ -27,7 +27,9 @@ const currentIsCorrect = computed(() => {
     style="max-width: 900px; margin: 0 auto; padding: 16px">
     <n-space align="start" justify="space-between">
       <div>
-        <n-h2 style="margin: 0">{{ quiz.state.quiz?.title ?? "" }}</n-h2>
+        <n-h2 style="margin: 0">{{
+          quiz.state.quiz?.title ?? "Quiz App"
+        }}</n-h2>
         <n-text v-if="quiz.state.quiz?.description" depth="3">
           {{ quiz.state.quiz.description }}
         </n-text>
@@ -45,15 +47,47 @@ const currentIsCorrect = computed(() => {
     <n-progress
       v-if="quiz.state.status !== 'idle'"
       type="line"
-      :percentage="quiz.progressPct"
+      :percentage="quiz.progressPct.value"
       :height="10"
       :border-radius="6"
       :show-indicator="false" />
 
+    <!-- Jump / Finish UI -->
+    <n-card
+      v-if="quiz.state.status !== 'idle' && quiz.state.quiz"
+      size="small"
+      style="margin-top: -4px">
+      <n-space align="center" justify="space-between">
+        <n-text depth="3" style="font-size: 12px">
+          Beantwortet: {{ quiz.answeredCount.value }} / {{ quiz.total.value }}
+        </n-text>
+
+        <n-button
+          type="primary"
+          :disabled="!quiz.allAnswered.value"
+          @click="quiz.finishIfPossible()">
+          Ergebnis anzeigen
+        </n-button>
+      </n-space>
+
+      <n-space wrap :size="8" style="margin-top: 10px">
+        <n-button
+          v-for="(q, i) in quiz.state.quiz.questions"
+          :key="q.id"
+          size="small"
+          :type="i === quiz.state.currentIndex ? 'primary' : 'default'"
+          :secondary="i !== quiz.state.currentIndex"
+          @click="quiz.goTo(i)">
+          {{ i + 1 }}
+        </n-button>
+      </n-space>
+    </n-card>
+
     <QuizStart
       v-if="quiz.state.status === 'idle'"
       :last-run="quiz.lastRun.value"
-      @start="onStart" />
+      @start="onStart"
+      @open-last="quiz.openLastResult()" />
 
     <QuizQuestion
       v-else-if="

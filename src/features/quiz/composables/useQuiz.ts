@@ -34,6 +34,21 @@ export function useQuiz() {
     flow.start(quiz);
   }
 
+  function openLastResult() {
+    const last = persistence.loadLastRun();
+    if (!last) return;
+
+    const quiz = loadQuiz(last.quizId);
+
+    state.quiz = quiz;
+    state.answers = last.answers ?? {};
+    state.reviewed = last.reviewed ?? {};
+    state.currentIndex = 0;
+    state.startedAt = undefined;
+    state.finishedAt = last.finishedAt ?? Date.now();
+    state.status = "finished";
+  }
+
   return {
     // state
     state,
@@ -43,11 +58,15 @@ export function useQuiz() {
     currentQuestion: flow.currentQuestion,
     isLast: flow.isLast,
     progressPct: flow.progressPct,
+    answeredCount: flow.answeredCount,
+    allAnswered: flow.allAnswered,
     start,
     startById,
+    goTo: flow.goTo,
     prev: flow.prev,
     next: flow.next,
     goToReview: flow.goToReview,
+    finishIfPossible: flow.finishIfPossible,
     reset: flow.reset,
 
     // answers
@@ -65,6 +84,7 @@ export function useQuiz() {
     // persistence
     saveRun: persistence.saveRun,
     lastRun: persistence.lastRun,
+    openLastResult,
 
     // data
     loadQuiz,

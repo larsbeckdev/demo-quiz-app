@@ -12,7 +12,7 @@ function safeJsonParse<T>(value: string | null): T | null {
   }
 }
 
-type StoredRun = {
+export type StoredRun = {
   quizId: string;
   score: number;
   total: number;
