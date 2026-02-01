@@ -81,11 +81,17 @@ function onPick(choiceId: string) {
           :key="c.id"
           strong
           :type="
-            props.status === 'running' && isSelected(c.id)
-              ? 'primary'
-              : 'default'
+            props.status === 'running'
+              ? isSelected(c.id)
+                ? 'primary'
+                : 'default'
+              : isCorrectChoice(c.id)
+                ? 'success'
+                : isSelected(c.id)
+                  ? 'error'
+                  : 'default'
           "
-          :secondary="!(props.status === 'running' && isSelected(c.id))"
+          :secondary="true"
           style="width: 100%; justify-content: space-between"
           :class="choiceClass(c.id)"
           @click="onPick(c.id)">
