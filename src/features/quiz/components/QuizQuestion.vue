@@ -36,7 +36,12 @@ function isCorrectChoice(choiceId: string) {
 }
 
 function choiceClass(choiceId: string) {
-  if (props.status !== "review") return "";
+  // Während running: selected deutlich
+  if (props.status === "running") {
+    return isSelected(choiceId) ? "choice--selected" : "";
+  }
+
+  // Review-Farben wie gehabt
   if (isCorrectChoice(choiceId)) return "choice--correct";
   if (isSelected(choiceId) && !isCorrectChoice(choiceId))
     return "choice--wrong";
@@ -75,15 +80,14 @@ function onPick(choiceId: string) {
           v-for="c in props.question.choices"
           :key="c.id"
           strong
-          :secondary="!isSelected(c.id)"
-          :type="isSelected(c.id) ? 'primary' : 'default'"
-          style="width: 100%; justify-content: space-between"
-          :class="[
+          :type="
             props.status === 'running' && isSelected(c.id)
-              ? 'choice--selected'
-              : '',
-            choiceClass(c.id),
-          ]"
+              ? 'primary'
+              : 'default'
+          "
+          :secondary="!(props.status === 'running' && isSelected(c.id))"
+          style="width: 100%; justify-content: space-between"
+          :class="choiceClass(c.id)"
           @click="onPick(c.id)">
           <span>{{ c.text }}</span>
         </n-button>
@@ -121,25 +125,31 @@ function onPick(choiceId: string) {
             Antwort prüfen
           </n-button>
 
-          <n-button v-else type="primary" @click="emit('next')">
-            Weiter
-          </n-button>
+          <n-button v-else type="primary" @click="emit('next')"
+            >Weiter</n-button
+          >
         </n-space>
       </n-space>
     </n-space>
   </n-card>
 
-  <n-alert v-else type="warning" :bordered="true">
-    Keine Frage gefunden.
-  </n-alert>
+  <n-alert v-else type="warning" :bordered="true"
+    >Keine Frage gefunden.</n-alert
+  >
 </template>
 
 <style scoped>
-.choice--correct :deep(.n-button__content) {
-  font-weight: 700;
+.choice--selected {
+  border-color: var(--n-color-target);
+  background: rgba(59, 130, 246, 0.14);
 }
+.choice--selected :deep(.n-button__content) {
+  font-weight: 800;
+}
+
+.choice--correct :deep(.n-button__content),
 .choice--wrong :deep(.n-button__content) {
-  font-weight: 700;
+  font-weight: 800;
 }
 
 .choice--correct {
