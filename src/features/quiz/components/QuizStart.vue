@@ -15,7 +15,6 @@ function formatDate(ts: number) {
   return d.toLocaleString();
 }
 
-// import { NCard, NSpace, NText, NAlert, NButton } from "naive-ui";
 </script>
 
 <template>
