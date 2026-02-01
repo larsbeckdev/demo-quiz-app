@@ -18,6 +18,16 @@ function verdict(pct: number) {
   if (pct >= 50) return "Solide Basis.";
   return "Nochmal üben 🙂";
 }
+
+function choiceText(qId: string, choiceId: string) {
+  const q = props.quiz?.questions.find((x) => x.id === qId);
+  return q?.choices.find((c) => c.id === choiceId)?.text ?? "—";
+}
+
+function joinTexts(qId: string, ids: string[]) {
+  if (!ids?.length) return "—";
+  return ids.map((id) => choiceText(qId, id)).join(", ");
+}
 </script>
 
 <template>
@@ -29,7 +39,8 @@ function verdict(pct: number) {
         </n-text>
         <div>
           <n-text depth="3">
-            {{ props.scorePct }}% · {{ verdict(props.scorePct) }}
+            {{ props.scorePct }}% · {{ verdict(props.scorePct) }} · Richtig:
+            {{ props.score }} · Falsch: {{ props.wrong }}
           </n-text>
         </div>
       </div>
@@ -50,9 +61,8 @@ function verdict(pct: number) {
               <div>
                 <n-text depth="3" style="font-size: 12px">Deine Antwort</n-text>
                 <div>
-                  <n-text depth="3">
-                    {{ props.scorePct }}% · {{ verdict(props.scorePct) }} ·
-                    Richtig: {{ props.score }} · Falsch: {{ props.wrong }}
+                  <n-text strong>
+                    {{ joinTexts(q.id, props.answers[q.id] ?? []) }}
                   </n-text>
                 </div>
               </div>
@@ -60,9 +70,8 @@ function verdict(pct: number) {
               <div>
                 <n-text depth="3" style="font-size: 12px">Richtig</n-text>
                 <div>
-                  <n-text depth="3">
-                    {{ props.scorePct }}% · {{ verdict(props.scorePct) }} ·
-                    Richtig: {{ props.score }} · Falsch: {{ props.wrong }}
+                  <n-text strong>
+                    {{ joinTexts(q.id, q.correctChoiceIds) }}
                   </n-text>
                 </div>
               </div>
