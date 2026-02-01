@@ -18,26 +18,29 @@ function formatDate(ts: number) {
 </script>
 
 <template>
-  <div class="card shadow-sm">
-    <div class="card-body">
-      <h2 class="h5">Bereit?</h2>
-      <p class="text-muted mb-3">
+  <n-card title="Bereit?">
+    <n-space vertical :size="12">
+      <n-text depth="3">
         Starte das Quiz und beantworte die Fragen nacheinander.
-      </p>
+      </n-text>
 
-      <div v-if="props.lastRun" class="alert alert-light border">
-        <div class="small text-muted">Letzter Lauf</div>
-        <div class="fw-semibold">
-          {{ props.lastRun.score }} / {{ props.lastRun.total }} Punkte
-          <span class="text-muted fw-normal"
-            >· {{ formatDate(props.lastRun.finishedAt) }}</span
-          >
-        </div>
+      <n-alert v-if="props.lastRun" type="default" :bordered="true">
+        <n-space vertical :size="4">
+          <n-text depth="3" style="font-size: 12px">Letzter Lauf</n-text>
+          <n-text strong>
+            {{ props.lastRun.score }} / {{ props.lastRun.total }} Punkte
+            <n-text depth="3" style="font-weight: 400">
+              · {{ formatDate(props.lastRun.finishedAt) }}
+            </n-text>
+          </n-text>
+        </n-space>
+      </n-alert>
+
+      <div>
+        <n-button type="primary" @click="$emit('start')">
+          Quiz starten
+        </n-button>
       </div>
-
-      <button class="btn btn-primary" @click="$emit('start')">
-        Quiz starten
-      </button>
-    </div>
-  </div>
+    </n-space>
+  </n-card>
 </template>
