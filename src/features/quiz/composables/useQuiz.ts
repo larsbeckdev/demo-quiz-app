@@ -1,11 +1,11 @@
 import type { Quiz } from "../types/quiz.types";
 import { getQuizById } from "../data";
 
-import { useQuizState } from "./quiz/useQuizState";
-import { useQuizFlow } from "./quiz/useQuizFlow";
-import { useQuizAnswers } from "./quiz/useQuizAnswers";
-import { useQuizScoring } from "./quiz/useQuizScoring";
-import { useQuizPersistence } from "./quiz/useQuizPersistence";
+import { useQuizState } from "./useQuizState";
+import { useQuizFlow } from "./useQuizFlow";
+import { useQuizAnswers } from "./useQuizAnswers";
+import { useQuizScoring } from "./useQuizScoring";
+import { useQuizPersistence } from "./useQuizPersistence";
 
 export function useQuiz() {
   const { state } = useQuizState();
@@ -13,7 +13,11 @@ export function useQuiz() {
   const flow = useQuizFlow(state);
   const scoring = useQuizScoring(state);
   const answers = useQuizAnswers(state, flow.currentQuestion);
-  const persistence = useQuizPersistence(state, scoring.correctCount, flow.total);
+  const persistence = useQuizPersistence(
+    state,
+    scoring.correctCount,
+    flow.total,
+  );
 
   function loadQuiz(quizId: string) {
     const quiz = getQuizById(quizId);
