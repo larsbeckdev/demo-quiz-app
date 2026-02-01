@@ -3,10 +3,11 @@ import type { Quiz } from "../types/quiz.types";
 
 const props = defineProps<{
   score: number;
+  wrong: number;
   scorePct: number;
   total: number;
   quiz: Quiz | null;
-  answers: Record<string, string>;
+  answers: Record<string, string[]>;
 }>();
 
 defineEmits<{ (e: "restart"): void; (e: "save"): void }>();
@@ -49,11 +50,9 @@ function verdict(pct: number) {
               <div>
                 <n-text depth="3" style="font-size: 12px">Deine Antwort</n-text>
                 <div>
-                  <n-text strong>
-                    {{
-                      q.choices.find((c) => c.id === props.answers[q.id])
-                        ?.text ?? "—"
-                    }}
+                  <n-text depth="3">
+                    {{ props.scorePct }}% · {{ verdict(props.scorePct) }} ·
+                    Richtig: {{ props.score }} · Falsch: {{ props.wrong }}
                   </n-text>
                 </div>
               </div>
@@ -61,10 +60,9 @@ function verdict(pct: number) {
               <div>
                 <n-text depth="3" style="font-size: 12px">Richtig</n-text>
                 <div>
-                  <n-text strong>
-                    {{
-                      q.choices.find((c) => c.id === q.correctChoiceId)?.text
-                    }}
+                  <n-text depth="3">
+                    {{ props.scorePct }}% · {{ verdict(props.scorePct) }} ·
+                    Richtig: {{ props.score }} · Falsch: {{ props.wrong }}
                   </n-text>
                 </div>
               </div>

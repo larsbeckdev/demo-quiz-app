@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { computed } from "vue";
 import { useQuiz } from "../composables/useQuiz";
 
 import QuizStart from "./QuizStart.vue";
@@ -6,12 +7,17 @@ import QuizQuestion from "./QuizQuestion.vue";
 import QuizResult from "./QuizResult.vue";
 
 const quiz = useQuiz();
-
 const DEFAULT_QUIZ_ID = "web-basics-50";
 
 function onStart() {
   quiz.startById(DEFAULT_QUIZ_ID);
 }
+
+const currentIsCorrect = computed(() => {
+  const q = quiz.currentQuestion.value;
+  if (!q) return false;
+  return quiz.isQuestionCorrect(q);
+});
 </script>
 
 <template>
@@ -21,9 +27,9 @@ function onStart() {
     style="max-width: 900px; margin: 0 auto; padding: 16px">
     <n-space align="start" justify="space-between">
       <div>
-        <n-h2 style="margin: 0">
-          {{ quiz.state.quiz?.title ?? "Quiz App" }}
-        </n-h2>
+        <n-h2 style="margin: 0">{{
+          quiz.state.quiz?.title ?? "Quiz App"
+        }}</n-h2>
         <n-text v-if="quiz.state.quiz?.description" depth="3">
           {{ quiz.state.quiz.description }}
         </n-text>
@@ -52,20 +58,28 @@ function onStart() {
       @start="onStart" />
 
     <QuizQuestion
-      v-else-if="quiz.state.status === 'running'"
+      v-else-if="
+        quiz.state.status === 'running' || quiz.state.status === 'review'
+      "
+      :status="quiz.state.status"
       :question="quiz.currentQuestion.value"
       :index="quiz.state.currentIndex"
       :total="quiz.total.value"
-      :answers="quiz.state.answers"
-      :can-go-next="quiz.canGoNext.value"
-      :is-last="quiz.isLast.value"
-      @select="quiz.selectAnswer"
+      :selected-ids="quiz.selectedIds.value"
+      :can-check="quiz.canCheck.value"
+      :correct-count="quiz.correctCount.value"
+      :wrong-count="quiz.wrongCount.value"
+      :is-correct="currentIsCorrect"
+      @setSingle="quiz.setSingle"
+      @toggleMulti="quiz.toggleMulti"
       @prev="quiz.prev"
+      @check="quiz.goToReview"
       @next="quiz.next" />
 
     <QuizResult
       v-else
-      :score="quiz.score.value"
+      :score="quiz.correctCount.value"
+      :wrong="quiz.wrongCount.value"
       :score-pct="quiz.scorePct.value"
       :total="quiz.total.value"
       :quiz="quiz.state.quiz"
