@@ -2,7 +2,7 @@
 
 <template>
   <p class="copyright-text text-center text-sm opacity-70">
-    &copy; 2026 vCard-QR. All rights reserved.
+    &copy; 2026 Quiz-App. All rights reserved.
   </p>
 </template>
 
