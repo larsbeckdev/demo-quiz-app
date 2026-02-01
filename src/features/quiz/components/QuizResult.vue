@@ -1,4 +1,3 @@
-<!-- src/features/quiz/components/QuizResult.vue -->
 <script setup lang="ts">
 import type { Quiz } from "../types/quiz.types";
 

@@ -1,4 +1,3 @@
-<!-- src/features/quiz/components/QuizStart.vue -->
 <script setup lang="ts">
 const props = defineProps<{
   lastRun: {

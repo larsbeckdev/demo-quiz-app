@@ -1,4 +1,4 @@
-<!-- src/features/quiz/components/QuizShell.vue -->
+
 <script setup lang="ts">
 import { useQuiz } from "../composables/useQuiz";
 
@@ -8,7 +8,6 @@ import QuizResult from "./QuizResult.vue";
 
 const quiz = useQuiz();
 
-// Default Quiz ID (aus deiner JSON)
 const DEFAULT_QUIZ_ID = "web-basics-50";
 
 function onStart() {
