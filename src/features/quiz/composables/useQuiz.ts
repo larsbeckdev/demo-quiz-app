@@ -28,15 +28,12 @@ export function useQuiz() {
     return q ?? null;
   });
 
+  const answeredCount = computed(() => Object.keys(state.answers).length);
+
   const progressPct = computed(() => {
-    if (total.value === 0) return 0;
-
-    // Fortschritt = beantwortete Fragen / total
-    const answeredCount = state.quiz
-      ? state.quiz.questions.filter((q) => state.answers[q.id]).length
-      : 0;
-
-    return Math.round((answeredCount / total.value) * 100);
+    const t = total.value;
+    if (!t) return 0;
+    return Math.round((answeredCount.value / t) * 100);
   });
 
   const isLast = computed(() => state.currentIndex >= total.value - 1);
