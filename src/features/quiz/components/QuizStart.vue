@@ -8,13 +8,12 @@ const props = defineProps<{
   } | null;
 }>();
 
-defineEmits<{ (e: "start"): void }>();
+defineEmits<{ (e: "start"): void; (e: "open-last"): void }>();
 
 function formatDate(ts: number) {
   const d = new Date(ts);
   return d.toLocaleString();
 }
-
 </script>
 
 <template>
@@ -36,11 +35,13 @@ function formatDate(ts: number) {
         </n-space>
       </n-alert>
 
-      <div>
-        <n-button type="primary" @click="$emit('start')">
-          Quiz starten
+      <n-space :size="8">
+        <n-button type="primary" @click="$emit('start')">Quiz starten</n-button>
+
+        <n-button v-if="props.lastRun" secondary @click="$emit('open-last')">
+          Letztes Ergebnis ansehen
         </n-button>
-      </div>
+      </n-space>
     </n-space>
   </n-card>
 </template>
