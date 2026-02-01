@@ -5,6 +5,7 @@
   "questions": [
     {
       "id": "q1",
+      "type": "single",
       "question": "Wofür steht HTML?",
       "choices": [
         { "id": "a", "text": "HyperText Markup Language" },
@@ -12,10 +13,11 @@
         { "id": "c", "text": "HyperTransfer Markup Language" },
         { "id": "d", "text": "Home Tool Markup Language" }
       ],
-      "correctChoiceId": "a"
+      "correctChoiceIds": ["a"]
     },
     {
       "id": "q2",
+      "type": "single",
       "question": "Welche Aufgabe hat CSS?",
       "choices": [
         { "id": "a", "text": "Logik verarbeiten" },
@@ -23,10 +25,11 @@
         { "id": "c", "text": "Layout und Design steuern" },
         { "id": "d", "text": "Server konfigurieren" }
       ],
-      "correctChoiceId": "c"
+      "correctChoiceIds": ["c"]
     },
     {
       "id": "q3",
+      "type": "single",
       "question": "Welches HTML-Element ist semantisch korrekt für Navigation?",
       "choices": [
         { "id": "a", "text": "<div>" },
@@ -34,10 +37,11 @@
         { "id": "c", "text": "<nav>" },
         { "id": "d", "text": "<span>" }
       ],
-      "correctChoiceId": "c"
+      "correctChoiceIds": ["c"]
     },
     {
       "id": "q4",
+      "type": "single",
       "question": "Welche Einheit ist relativ zur Schriftgröße des Elternelements?",
       "choices": [
         { "id": "a", "text": "px" },
@@ -45,10 +49,11 @@
         { "id": "c", "text": "rem" },
         { "id": "d", "text": "em" }
       ],
-      "correctChoiceId": "d"
+      "correctChoiceIds": ["d"]
     },
     {
       "id": "q5",
+      "type": "single",
       "question": "Welche CSS-Eigenschaft steuert den Innenabstand?",
       "choices": [
         { "id": "a", "text": "margin" },
@@ -56,10 +61,11 @@
         { "id": "c", "text": "border" },
         { "id": "d", "text": "gap" }
       ],
-      "correctChoiceId": "b"
+      "correctChoiceIds": ["b"]
     },
     {
       "id": "q6",
+      "type": "single",
       "question": "Was gibt `typeof null` in JavaScript zurück?",
       "choices": [
         { "id": "a", "text": "null" },
@@ -67,11 +73,12 @@
         { "id": "c", "text": "object" },
         { "id": "d", "text": "boolean" }
       ],
-      "correctChoiceId": "c",
+      "correctChoiceIds": ["c"],
       "explanation": "Ein historischer Bug in JavaScript."
     },
     {
       "id": "q7",
+      "type": "single",
       "question": "Welche Array-Methode erzeugt ein neues Array?",
       "choices": [
         { "id": "a", "text": "push" },
@@ -79,10 +86,11 @@
         { "id": "c", "text": "pop" },
         { "id": "d", "text": "splice" }
       ],
-      "correctChoiceId": "b"
+      "correctChoiceIds": ["b"]
     },
     {
       "id": "q8",
+      "type": "single",
       "question": "Welche Aussage zu `const` ist korrekt?",
       "choices": [
         { "id": "a", "text": "Der Wert ist immer unveränderlich" },
@@ -90,10 +98,11 @@
         { "id": "c", "text": "Es ist global verfügbar" },
         { "id": "d", "text": "Es kann neu deklariert werden" }
       ],
-      "correctChoiceId": "b"
+      "correctChoiceIds": ["b"]
     },
     {
       "id": "q9",
+      "type": "single",
       "question": "Welche Methode konvertiert JSON in ein Objekt?",
       "choices": [
         { "id": "a", "text": "JSON.parse()" },
@@ -101,10 +110,11 @@
         { "id": "c", "text": "Object.parse()" },
         { "id": "d", "text": "JSON.toObject()" }
       ],
-      "correctChoiceId": "a"
+      "correctChoiceIds": ["a"]
     },
     {
       "id": "q10",
+      "type": "single",
       "question": "Wozu dient `v-for` in Vue?",
       "choices": [
         { "id": "a", "text": "Events behandeln" },
@@ -112,11 +122,11 @@
         { "id": "c", "text": "Listen rendern" },
         { "id": "d", "text": "Styles setzen" }
       ],
-      "correctChoiceId": "c"
+      "correctChoiceIds": ["c"]
     },
-
     {
       "id": "q11",
+      "type": "single",
       "question": "Welche Direktive bindet Werte in Vue?",
       "choices": [
         { "id": "a", "text": "v-bind" },
@@ -124,10 +134,11 @@
         { "id": "c", "text": "v-value" },
         { "id": "d", "text": "v-data" }
       ],
-      "correctChoiceId": "a"
+      "correctChoiceIds": ["a"]
     },
     {
       "id": "q12",
+      "type": "single",
       "question": "Was macht `preventDefault()`?",
       "choices": [
         { "id": "a", "text": "Stoppt das Event-Bubbling" },
@@ -135,10 +146,11 @@
         { "id": "c", "text": "Löscht das Event" },
         { "id": "d", "text": "Stoppt JavaScript" }
       ],
-      "correctChoiceId": "b"
+      "correctChoiceIds": ["b"]
     },
     {
       "id": "q13",
+      "type": "single",
       "question": "Welche HTTP-Methode wird zum Lesen genutzt?",
       "choices": [
         { "id": "a", "text": "POST" },
@@ -146,10 +158,11 @@
         { "id": "c", "text": "GET" },
         { "id": "d", "text": "DELETE" }
       ],
-      "correctChoiceId": "c"
+      "correctChoiceIds": ["c"]
     },
     {
       "id": "q14",
+      "type": "single",
       "question": "Welche Datei enthält Metadaten im Webprojekt?",
       "choices": [
         { "id": "a", "text": "index.css" },
@@ -157,10 +170,11 @@
         { "id": "c", "text": "index.html" },
         { "id": "d", "text": "meta.json" }
       ],
-      "correctChoiceId": "c"
+      "correctChoiceIds": ["c"]
     },
     {
       "id": "q15",
+      "type": "single",
       "question": "Was ist Bootstrap?",
       "choices": [
         { "id": "a", "text": "JavaScript-Framework" },
@@ -168,11 +182,11 @@
         { "id": "c", "text": "Backend-System" },
         { "id": "d", "text": "Datenbank" }
       ],
-      "correctChoiceId": "b"
+      "correctChoiceIds": ["b"]
     },
-
     {
       "id": "q16",
+      "type": "single",
       "question": "Welche Klasse erzeugt bei Bootstrap ein Grid?",
       "choices": [
         { "id": "a", "text": ".grid" },
@@ -180,10 +194,11 @@
         { "id": "c", "text": ".flex" },
         { "id": "d", "text": ".box" }
       ],
-      "correctChoiceId": "b"
+      "correctChoiceIds": ["b"]
     },
     {
       "id": "q17",
+      "type": "single",
       "question": "Welche Einheit ist relativ zum Viewport?",
       "choices": [
         { "id": "a", "text": "em" },
@@ -191,10 +206,11 @@
         { "id": "c", "text": "vw" },
         { "id": "d", "text": "ch" }
       ],
-      "correctChoiceId": "c"
+      "correctChoiceIds": ["c"]
     },
     {
       "id": "q18",
+      "type": "single",
       "question": "Welche Aussage zu Flexbox ist korrekt?",
       "choices": [
         { "id": "a", "text": "Nur für vertikale Layouts" },
@@ -202,10 +218,11 @@
         { "id": "c", "text": "1-dimensionales Layout" },
         { "id": "d", "text": "Ersetzt HTML" }
       ],
-      "correctChoiceId": "c"
+      "correctChoiceIds": ["c"]
     },
     {
       "id": "q19",
+      "type": "single",
       "question": "Was bedeutet SPA?",
       "choices": [
         { "id": "a", "text": "Simple Page App" },
@@ -213,10 +230,11 @@
         { "id": "c", "text": "Server Process App" },
         { "id": "d", "text": "Static Page Application" }
       ],
-      "correctChoiceId": "b"
+      "correctChoiceIds": ["b"]
     },
     {
       "id": "q20",
+      "type": "single",
       "question": "Welche Vue-Datei-Endung wird genutzt?",
       "choices": [
         { "id": "a", "text": ".jsx" },
@@ -224,11 +242,11 @@
         { "id": "c", "text": ".vue" },
         { "id": "d", "text": ".html" }
       ],
-      "correctChoiceId": "c"
+      "correctChoiceIds": ["c"]
     },
-
     {
       "id": "q21",
+      "type": "single",
       "question": "Was ist `localStorage`?",
       "choices": [
         { "id": "a", "text": "Server-Datenbank" },
@@ -236,10 +254,11 @@
         { "id": "c", "text": "Vue Store" },
         { "id": "d", "text": "CSS-Cache" }
       ],
-      "correctChoiceId": "b"
+      "correctChoiceIds": ["b"]
     },
     {
       "id": "q22",
+      "type": "single",
       "question": "Welche Funktion pausiert Code zeitverzögert?",
       "choices": [
         { "id": "a", "text": "delay()" },
@@ -247,10 +266,11 @@
         { "id": "c", "text": "setTimeout()" },
         { "id": "d", "text": "wait()" }
       ],
-      "correctChoiceId": "c"
+      "correctChoiceIds": ["c"]
     },
     {
       "id": "q23",
+      "type": "single",
       "question": "Was macht `Array.filter()`?",
       "choices": [
         { "id": "a", "text": "Elemente ändern" },
@@ -258,10 +278,11 @@
         { "id": "c", "text": "Neues gefiltertes Array erzeugen" },
         { "id": "d", "text": "Array sortieren" }
       ],
-      "correctChoiceId": "c"
+      "correctChoiceIds": ["c"]
     },
     {
       "id": "q24",
+      "type": "single",
       "question": "Welche CSS-Eigenschaft macht Elemente unsichtbar, behält aber Platz?",
       "choices": [
         { "id": "a", "text": "display: none" },
@@ -269,10 +290,11 @@
         { "id": "c", "text": "opacity: 0" },
         { "id": "d", "text": "z-index: -1" }
       ],
-      "correctChoiceId": "b"
+      "correctChoiceIds": ["b"]
     },
     {
       "id": "q25",
+      "type": "single",
       "question": "Was ist der Zweck von `key` in Vue-Listen?",
       "choices": [
         { "id": "a", "text": "Styling" },
@@ -280,11 +302,11 @@
         { "id": "c", "text": "Events" },
         { "id": "d", "text": "Routing" }
       ],
-      "correctChoiceId": "b"
+      "correctChoiceIds": ["b"]
     },
-
     {
       "id": "q26",
+      "type": "single",
       "question": "Welche Datei startet meist ein Webprojekt?",
       "choices": [
         { "id": "a", "text": "main.css" },
@@ -292,10 +314,11 @@
         { "id": "c", "text": "index.html" },
         { "id": "d", "text": "start.vue" }
       ],
-      "correctChoiceId": "c"
+      "correctChoiceIds": ["c"]
     },
     {
       "id": "q27",
+      "type": "single",
       "question": "Was ist `npm`?",
       "choices": [
         { "id": "a", "text": "Node Package Manager" },
@@ -303,10 +326,11 @@
         { "id": "c", "text": "Network Module Plugin" },
         { "id": "d", "text": "Native Package Model" }
       ],
-      "correctChoiceId": "a"
+      "correctChoiceIds": ["a"]
     },
     {
       "id": "q28",
+      "type": "single",
       "question": "Welche Methode fügt ein Element ans Array-Ende?",
       "choices": [
         { "id": "a", "text": "shift" },
@@ -314,10 +338,11 @@
         { "id": "c", "text": "push" },
         { "id": "d", "text": "concat" }
       ],
-      "correctChoiceId": "c"
+      "correctChoiceIds": ["c"]
     },
     {
       "id": "q29",
+      "type": "single",
       "question": "Was ist Vite?",
       "choices": [
         { "id": "a", "text": "CSS-Framework" },
@@ -325,10 +350,11 @@
         { "id": "c", "text": "Datenbank" },
         { "id": "d", "text": "Browser" }
       ],
-      "correctChoiceId": "b"
+      "correctChoiceIds": ["b"]
     },
     {
       "id": "q30",
+      "type": "single",
       "question": "Was beschreibt `responsive Design`?",
       "choices": [
         { "id": "a", "text": "Schnelle Server" },
@@ -336,11 +362,11 @@
         { "id": "c", "text": "Anpassung an Bildschirmgrößen" },
         { "id": "d", "text": "Barrierefreiheit" }
       ],
-      "correctChoiceId": "c"
+      "correctChoiceIds": ["c"]
     },
-
     {
       "id": "q31",
+      "type": "single",
       "question": "Welche CSS-Regel aktiviert Flexbox?",
       "choices": [
         { "id": "a", "text": "display: block" },
@@ -348,10 +374,11 @@
         { "id": "c", "text": "position: flex" },
         { "id": "d", "text": "flex: true" }
       ],
-      "correctChoiceId": "b"
+      "correctChoiceIds": ["b"]
     },
     {
       "id": "q32",
+      "type": "single",
       "question": "Was bedeutet `async`?",
       "choices": [
         { "id": "a", "text": "Synchroner Code" },
@@ -359,10 +386,11 @@
         { "id": "c", "text": "Asynchroner Code" },
         { "id": "d", "text": "Paralleler CSS-Code" }
       ],
-      "correctChoiceId": "c"
+      "correctChoiceIds": ["c"]
     },
     {
       "id": "q33",
+      "type": "single",
       "question": "Welche Methode beendet eine Promise-Kette bei Fehlern?",
       "choices": [
         { "id": "a", "text": "then()" },
@@ -370,10 +398,11 @@
         { "id": "c", "text": "catch()" },
         { "id": "d", "text": "finally()" }
       ],
-      "correctChoiceId": "c"
+      "correctChoiceIds": ["c"]
     },
     {
       "id": "q34",
+      "type": "single",
       "question": "Welche HTML-Struktur ist korrekt?",
       "choices": [
         { "id": "a", "text": "<html><head></head><body></body></html>" },
@@ -381,10 +410,11 @@
         { "id": "c", "text": "<head><body></body></head>" },
         { "id": "d", "text": "<html><body></html></body>" }
       ],
-      "correctChoiceId": "a"
+      "correctChoiceIds": ["a"]
     },
     {
       "id": "q35",
+      "type": "single",
       "question": "Wofür wird `alt` bei Bildern genutzt?",
       "choices": [
         { "id": "a", "text": "Animation" },
@@ -392,11 +422,11 @@
         { "id": "c", "text": "Styling" },
         { "id": "d", "text": "Lazy Loading" }
       ],
-      "correctChoiceId": "b"
+      "correctChoiceIds": ["b"]
     },
-
     {
       "id": "q36",
+      "type": "single",
       "question": "Was ist ein Component?",
       "choices": [
         { "id": "a", "text": "Ein Server" },
@@ -404,10 +434,11 @@
         { "id": "c", "text": "Eine CSS-Datei" },
         { "id": "d", "text": "Ein Script-Tag" }
       ],
-      "correctChoiceId": "b"
+      "correctChoiceIds": ["b"]
     },
     {
       "id": "q37",
+      "type": "single",
       "question": "Welche Vue API wird heute bevorzugt?",
       "choices": [
         { "id": "a", "text": "Options API" },
@@ -415,10 +446,11 @@
         { "id": "c", "text": "Class API" },
         { "id": "d", "text": "Legacy API" }
       ],
-      "correctChoiceId": "b"
+      "correctChoiceIds": ["b"]
     },
     {
       "id": "q38",
+      "type": "single",
       "question": "Was ist `computed`?",
       "choices": [
         { "id": "a", "text": "Ein Lifecycle Hook" },
@@ -426,10 +458,11 @@
         { "id": "c", "text": "Ein Event" },
         { "id": "d", "text": "Ein Plugin" }
       ],
-      "correctChoiceId": "b"
+      "correctChoiceIds": ["b"]
     },
     {
       "id": "q39",
+      "type": "single",
       "question": "Welche Methode sortiert ein Array?",
       "choices": [
         { "id": "a", "text": "order()" },
@@ -437,10 +470,11 @@
         { "id": "c", "text": "filter()" },
         { "id": "d", "text": "map()" }
       ],
-      "correctChoiceId": "b"
+      "correctChoiceIds": ["b"]
     },
     {
       "id": "q40",
+      "type": "single",
       "question": "Was macht `preventDefault` bei Formularen?",
       "choices": [
         { "id": "a", "text": "Validierung" },
@@ -448,11 +482,11 @@
         { "id": "c", "text": "Speichern erzwingen" },
         { "id": "d", "text": "Input leeren" }
       ],
-      "correctChoiceId": "b"
+      "correctChoiceIds": ["b"]
     },
-
     {
       "id": "q41",
+      "type": "single",
       "question": "Welche Farbe steht für Erfolg in Bootstrap?",
       "choices": [
         { "id": "a", "text": "danger" },
@@ -460,10 +494,11 @@
         { "id": "c", "text": "success" },
         { "id": "d", "text": "info" }
       ],
-      "correctChoiceId": "c"
+      "correctChoiceIds": ["c"]
     },
     {
       "id": "q42",
+      "type": "single",
       "question": "Was ist `aria-label`?",
       "choices": [
         { "id": "a", "text": "CSS-Klasse" },
@@ -471,10 +506,11 @@
         { "id": "c", "text": "Vue-Direktive" },
         { "id": "d", "text": "JS-Funktion" }
       ],
-      "correctChoiceId": "b"
+      "correctChoiceIds": ["b"]
     },
     {
       "id": "q43",
+      "type": "single",
       "question": "Welche Einheit ist absolut?",
       "choices": [
         { "id": "a", "text": "em" },
@@ -482,10 +518,11 @@
         { "id": "c", "text": "px" },
         { "id": "d", "text": "vw" }
       ],
-      "correctChoiceId": "c"
+      "correctChoiceIds": ["c"]
     },
     {
       "id": "q44",
+      "type": "single",
       "question": "Welche Methode entfernt das letzte Array-Element?",
       "choices": [
         { "id": "a", "text": "shift" },
@@ -493,10 +530,11 @@
         { "id": "c", "text": "slice" },
         { "id": "d", "text": "remove" }
       ],
-      "correctChoiceId": "b"
+      "correctChoiceIds": ["b"]
     },
     {
       "id": "q45",
+      "type": "single",
       "question": "Was ist ein Breakpoint?",
       "choices": [
         { "id": "a", "text": "Debug-Stopp" },
@@ -504,11 +542,11 @@
         { "id": "c", "text": "JS-Fehler" },
         { "id": "d", "text": "Vue Hook" }
       ],
-      "correctChoiceId": "b"
+      "correctChoiceIds": ["b"]
     },
-
     {
       "id": "q46",
+      "type": "single",
       "question": "Was ist SEO?",
       "choices": [
         { "id": "a", "text": "Search Engine Optimization" },
@@ -516,10 +554,11 @@
         { "id": "c", "text": "Secure Element Output" },
         { "id": "d", "text": "Static Engine Object" }
       ],
-      "correctChoiceId": "a"
+      "correctChoiceIds": ["a"]
     },
     {
       "id": "q47",
+      "type": "single",
       "question": "Welche Datei definiert Projekt-Abhängigkeiten?",
       "choices": [
         { "id": "a", "text": "index.html" },
@@ -527,10 +566,11 @@
         { "id": "c", "text": "package.json" },
         { "id": "d", "text": "README.md" }
       ],
-      "correctChoiceId": "c"
+      "correctChoiceIds": ["c"]
     },
     {
       "id": "q48",
+      "type": "single",
       "question": "Was macht `watch` in Vue?",
       "choices": [
         { "id": "a", "text": "Komponenten rendern" },
@@ -538,10 +578,11 @@
         { "id": "c", "text": "Styles aktualisieren" },
         { "id": "d", "text": "Events blockieren" }
       ],
-      "correctChoiceId": "b"
+      "correctChoiceIds": ["b"]
     },
     {
       "id": "q49",
+      "type": "single",
       "question": "Welche Eigenschaft steuert Textfarbe?",
       "choices": [
         { "id": "a", "text": "font-style" },
@@ -549,10 +590,11 @@
         { "id": "c", "text": "color" },
         { "id": "d", "text": "text-decoration" }
       ],
-      "correctChoiceId": "c"
+      "correctChoiceIds": ["c"]
     },
     {
       "id": "q50",
+      "type": "single",
       "question": "Was ist der größte Vorteil von Komponenten?",
       "choices": [
         { "id": "a", "text": "Mehr Code" },
@@ -560,7 +602,7 @@
         { "id": "c", "text": "Komplexität" },
         { "id": "d", "text": "Abhängigkeiten" }
       ],
-      "correctChoiceId": "b"
+      "correctChoiceIds": ["b"]
     }
   ]
 }
