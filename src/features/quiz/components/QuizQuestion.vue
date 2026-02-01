@@ -141,15 +141,15 @@ function onPick(choiceId: string) {
 <style scoped>
 .choice--selected {
   border-color: var(--n-color-target);
-  background: rgba(59, 130, 246, 0.14);
+  /* background: rgba(59, 130, 246, 0.14); */
 }
 .choice--selected :deep(.n-button__content) {
-  font-weight: 800;
+  /* font-weight: 800; */
 }
 
 .choice--correct :deep(.n-button__content),
 .choice--wrong :deep(.n-button__content) {
-  font-weight: 800;
+  /* font-weight: 800; */
 }
 
 .choice--correct {
