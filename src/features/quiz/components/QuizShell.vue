@@ -17,32 +17,36 @@ function onStart() {
 </script>
 
 <template>
-  <div class="container py-4" style="max-width: 900px">
-    <div class="d-flex align-items-center justify-content-between mb-3">
+  <n-space
+    vertical
+    :size="16"
+    style="max-width: 900px; margin: 0 auto; padding: 16px">
+    <n-space align="start" justify="space-between">
       <div>
-        <h1 class="h4 mb-1">{{ quiz.state.quiz?.title ?? "Quiz App" }}</h1>
-        <p class="text-muted mb-0" v-if="quiz.state.quiz?.description">
+        <n-h2 style="margin: 0">
+          {{ quiz.state.quiz?.title ?? "Quiz App" }}
+        </n-h2>
+        <n-text v-if="quiz.state.quiz?.description" depth="3">
           {{ quiz.state.quiz.description }}
-        </p>
+        </n-text>
       </div>
 
-      <button
+      <n-button
         v-if="quiz.state.status !== 'idle'"
-        class="btn btn-outline-secondary btn-sm"
+        secondary
+        size="small"
         @click="quiz.reset()">
         Reset
-      </button>
-    </div>
+      </n-button>
+    </n-space>
 
-    <div
-      class="progress mb-3"
-      style="height: 10px"
-      v-if="quiz.state.status !== 'idle'">
-      <div
-        class="progress-bar"
-        role="progressbar"
-        :style="{ width: quiz.progressPct + '%' }" />
-    </div>
+    <n-progress
+      v-if="quiz.state.status !== 'idle'"
+      type="line"
+      :percentage="quiz.progressPct"
+      :height="10"
+      :border-radius="6"
+      :show-indicator="false" />
 
     <QuizStart
       v-if="quiz.state.status === 'idle'"
@@ -70,5 +74,5 @@ function onStart() {
       :answers="quiz.state.answers"
       @restart="onStart"
       @save="quiz.saveRun" />
-  </div>
+  </n-space>
 </template>
