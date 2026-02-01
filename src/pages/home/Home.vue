@@ -4,4 +4,5 @@ import { QuizShell } from "@/features/quiz";
 
 <template>
   <QuizShell />
+  <n-button>Default</n-button>
 </template>
