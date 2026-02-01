@@ -1,4 +1,6 @@
+<!-- src/features/quiz/components/QuizQuestion.vue -->
 <script setup lang="ts">
+import { computed } from "vue";
 import type { QuizQuestion } from "../types/quiz.types";
 
 const props = defineProps<{
@@ -16,53 +18,69 @@ const emit = defineEmits<{
   (e: "next"): void;
 }>();
 
-function selected(choiceId: string) {
-  if (!props.question) return false;
-  return props.answers[props.question.id] === choiceId;
+const selectedChoiceId = computed<string | null>(() => {
+  if (!props.question) return null;
+  return props.answers[props.question.id] ?? null;
+});
+
+function onSelect(choiceId: string | null) {
+  if (!props.question || !choiceId) return;
+  emit("select", props.question.id, choiceId);
 }
 </script>
 
 <template>
-  <div v-if="props.question" class="card shadow-sm">
-    <div class="card-body">
-      <div class="d-flex justify-content-between align-items-center mb-2">
-        <div class="text-muted small">
-          Frage {{ props.index + 1 }} / {{ props.total }}
-        </div>
-      </div>
+  <n-card v-if="props.question">
+    <n-space vertical :size="14">
+      <n-text depth="3" style="font-size: 12px">
+        Frage {{ props.index + 1 }} / {{ props.total }}
+      </n-text>
 
-      <h2 class="h5 mb-3">{{ props.question.question }}</h2>
+      <n-h3 style="margin: 0">{{ props.question.question }}</n-h3>
 
-      <div class="list-group mb-3">
-        <button
-          v-for="c in props.question.choices"
-          :key="c.id"
-          type="button"
-          class="list-group-item list-group-item-action d-flex align-items-center justify-content-between"
-          :class="{ active: selected(c.id) }"
-          @click="emit('select', props.question!.id, c.id)">
-          <span>{{ c.text }}</span>
-          <span v-if="selected(c.id)" class="badge text-bg-light">✓</span>
-        </button>
-      </div>
+      <n-radio-group
+        :value="selectedChoiceId"
+        @update:value="onSelect"
+        style="width: 100%">
+        <n-space vertical :size="10" style="width: 100%">
+          <n-radio-button
+            v-for="c in props.question.choices"
+            :key="c.id"
+            :value="c.id"
+            style="
+              width: 100%;
+              text-align: left;
+              justify-content: space-between;
+            ">
+            <n-space align="center" justify="space-between" style="width: 100%">
+              <span>{{ c.text }}</span>
+              <n-tag
+                v-if="selectedChoiceId === c.id"
+                size="small"
+                type="success">
+                ✓
+              </n-tag>
+            </n-space>
+          </n-radio-button>
+        </n-space>
+      </n-radio-group>
 
-      <div class="d-flex gap-2">
-        <button
-          class="btn btn-outline-secondary"
-          :disabled="props.index === 0"
-          @click="emit('prev')">
+      <n-space justify="space-between">
+        <n-button secondary :disabled="props.index === 0" @click="emit('prev')">
           Zurück
-        </button>
+        </n-button>
 
-        <button
-          class="btn btn-primary ms-auto"
+        <n-button
+          type="primary"
           :disabled="!props.canGoNext"
           @click="emit('next')">
           {{ props.isLast ? "Auswerten" : "Weiter" }}
-        </button>
-      </div>
-    </div>
-  </div>
+        </n-button>
+      </n-space>
+    </n-space>
+  </n-card>
 
-  <div v-else class="alert alert-warning">Keine Frage gefunden.</div>
+  <n-alert v-else type="warning" :bordered="true">
+    Keine Frage gefunden.
+  </n-alert>
 </template>
