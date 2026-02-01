@@ -182,7 +182,7 @@ function onPick(choiceId: string) {
 
 /* RUNNING/REVIEW: ausgewählte Antworten mehr Gewicht */
 .choice--picked :deep(.n-button__content) {
-  font-weight: 800;
+  font-weight: 400;
 }
 
 /* REVIEW: korrekt aber NICHT gewählt -> grün, aber softer */
