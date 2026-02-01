@@ -81,11 +81,7 @@ function onPick(choiceId: string) {
           @click="onPick(c.id)">
           <span>{{ c.text }}</span>
 
-          <n-tag
-            v-if="props.status === 'running' && isSelected(c.id)"
-            size="small">
-            gewählt
-          </n-tag>
+        
         </n-button>
       </n-space>
 
