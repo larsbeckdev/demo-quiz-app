@@ -14,6 +14,8 @@ function formatDate(ts: number) {
   const d = new Date(ts);
   return d.toLocaleString();
 }
+
+import { NCard, NSpace, NText, NAlert, NButton } from "naive-ui";
 </script>
 
 <template>
