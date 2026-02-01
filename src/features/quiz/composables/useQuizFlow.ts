@@ -9,21 +9,27 @@ export function useQuizFlow(state: QuizState) {
     return state.quiz.questions[state.currentIndex] ?? null;
   });
 
-  const isLast = computed(() => {
+  const answeredCount = computed(() => {
+    if (!state.quiz) return 0;
+    return state.quiz.questions.filter(
+      (q) => (state.answers[q.id]?.length ?? 0) > 0,
+    ).length;
+  });
+
+  const allAnswered = computed(() => {
     const t = total.value;
-    return t > 0 && state.currentIndex >= t - 1;
+    return t > 0 && answeredCount.value === t;
   });
 
   const progressPct = computed(() => {
     const t = total.value;
     if (!t) return 0;
+    return Math.round((answeredCount.value / t) * 100);
+  });
 
-    const q = currentQuestion.value;
-    const reviewed = q ? Boolean(state.reviewed[q.id]) : false;
-
-    const base = state.currentIndex;
-    const add = reviewed ? 0.8 : 0.2;
-    return Math.min(100, Math.round(((base + add) / t) * 100));
+  const isLast = computed(() => {
+    const t = total.value;
+    return t > 0 && state.currentIndex >= t - 1;
   });
 
   function start(quiz: Quiz) {
@@ -36,11 +42,19 @@ export function useQuizFlow(state: QuizState) {
     state.finishedAt = undefined;
   }
 
-  function prev() {
-    if (state.status === "idle") return;
-    state.currentIndex = Math.max(0, state.currentIndex - 1);
+  function goTo(index: number) {
+    if (!state.quiz) return;
+    const t = total.value;
+    const next = Math.min(Math.max(index, 0), Math.max(0, t - 1));
+    state.currentIndex = next;
+
     const q = currentQuestion.value;
     if (q) state.status = state.reviewed[q.id] ? "review" : "running";
+  }
+
+  function prev() {
+    if (state.status === "idle") return;
+    goTo(state.currentIndex - 1);
   }
 
   function goToReview() {
@@ -52,25 +66,18 @@ export function useQuizFlow(state: QuizState) {
 
   function next() {
     if (!state.quiz) return;
+    goTo(state.currentIndex + 1);
+  }
 
-    if (isLast.value) {
-      const q = currentQuestion.value;
-      if (!q) return;
+  function finishIfPossible() {
+    if (!state.quiz) return;
+    if (!allAnswered.value) return;
 
-      if (!state.reviewed[q.id]) {
-        goToReview();
-        return;
-      }
+    // optional: alles als reviewed markieren, damit Result stabil ist
+    for (const q of state.quiz.questions) state.reviewed[q.id] = true;
 
-      state.status = "finished";
-      state.finishedAt = Date.now();
-      return;
-    }
-
-    state.currentIndex++;
-    const q = currentQuestion.value;
-    if (q) state.status = state.reviewed[q.id] ? "review" : "running";
-    else state.status = "running";
+    state.status = "finished";
+    state.finishedAt = Date.now();
   }
 
   function reset() {
@@ -87,11 +94,15 @@ export function useQuizFlow(state: QuizState) {
     total,
     currentQuestion,
     isLast,
+    answeredCount,
+    allAnswered,
     progressPct,
     start,
+    goTo,
     prev,
     next,
     goToReview,
+    finishIfPossible,
     reset,
   };
 }
