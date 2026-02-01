@@ -139,28 +139,57 @@ function onPick(choiceId: string) {
 </template>
 
 <style scoped>
+/* Gemeinsame “Choice”-Basis: wir setzen nur Variablen, Naive rendert den Rest */
+.choice--selected,
+.choice--correct,
+.choice--wrong,
+.choice--neutral {
+  /* sorgt für weiche Übergänge in beiden Themes */
+  transition:
+    background-color 120ms ease,
+    border-color 120ms ease,
+    box-shadow 120ms ease,
+    opacity 120ms ease;
+}
+
+/* RUNNING: ausgewählt */
 .choice--selected {
   border-color: var(--n-color-target);
-  /* background: rgba(59, 130, 246, 0.14); */
-}
-.choice--selected :deep(.n-button__content) {
-  /* font-weight: 800; */
-}
-
-.choice--correct :deep(.n-button__content),
-.choice--wrong :deep(.n-button__content) {
-  /* font-weight: 800; */
+  /* nutzt primary-farbige “soft” Fläche – passt zu light/dark */
+  background-color: var(--n-color-target);
+  box-shadow: 0 0 0 2px var(--n-color-target);
 }
 
+/* REVIEW: correct */
 .choice--correct {
   border-color: var(--n-color-target);
-  background: rgba(34, 197, 94, 0.12);
+  background-color: var(--n-color-target);
+  box-shadow: 0 0 0 2px var(--n-color-target);
 }
+
+/* REVIEW: wrong */
 .choice--wrong {
   border-color: var(--n-color-target);
-  background: rgba(239, 68, 68, 0.12);
+  background-color: var(--n-color-target);
+  box-shadow: 0 0 0 2px var(--n-color-target);
 }
+
+/* Neutral: leicht zurücknehmen, aber nicht “grau kaputt” in dark */
 .choice--neutral {
-  opacity: 0.9;
+  opacity: 0.95;
+}
+
+/* Content emphasis */
+.choice--selected :deep(.n-button__content),
+.choice--correct :deep(.n-button__content),
+.choice--wrong :deep(.n-button__content) {
+  font-weight: 800;
+}
+
+/* Optional: bessere Lesbarkeit bei farbigem Hintergrund */
+.choice--selected :deep(.n-button__content),
+.choice--correct :deep(.n-button__content),
+.choice--wrong :deep(.n-button__content) {
+  color: var(--n-text-color);
 }
 </style>
