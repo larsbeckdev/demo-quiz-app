@@ -2,11 +2,9 @@ import quizWebBasics50Raw from "./quiz.web-basics.json";
 import type { Quiz } from "../types/quiz.types";
 
 function normalizeQuiz(raw: any): Quiz {
-  // minimal: korrektes Feld sicherstellen
   const questions = (raw.questions ?? []).map((q: any) => ({
     ...q,
     type: q.type ?? "single",
-    // Migration: correctChoiceId -> correctChoiceIds
     correctChoiceIds: Array.isArray(q.correctChoiceIds)
       ? q.correctChoiceIds
       : q.correctChoiceId
