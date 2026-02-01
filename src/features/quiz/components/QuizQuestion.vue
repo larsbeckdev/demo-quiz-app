@@ -139,12 +139,10 @@ function onPick(choiceId: string) {
 </template>
 
 <style scoped>
-/* Gemeinsame “Choice”-Basis: wir setzen nur Variablen, Naive rendert den Rest */
 .choice--selected,
 .choice--correct,
 .choice--wrong,
 .choice--neutral {
-  /* sorgt für weiche Übergänge in beiden Themes */
   transition:
     background-color 120ms ease,
     border-color 120ms ease,
