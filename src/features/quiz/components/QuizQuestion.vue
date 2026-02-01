@@ -80,8 +80,6 @@ function onPick(choiceId: string) {
           :class="choiceClass(c.id)"
           @click="onPick(c.id)">
           <span>{{ c.text }}</span>
-
-        
         </n-button>
       </n-space>
 
