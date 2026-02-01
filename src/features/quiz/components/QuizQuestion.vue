@@ -96,7 +96,6 @@ function onPick(choiceId: string) {
       <!-- Review hint -->
       <n-alert
         v-if="props.status === 'review'"
-        :bordered="true"
         :show-icon="false"
         :type="props.isCorrect ? 'success' : 'error'">
         <n-space vertical :size="6">
