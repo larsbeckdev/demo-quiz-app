@@ -35,17 +35,64 @@ function isCorrectChoice(choiceId: string) {
   return Boolean(props.question?.correctChoiceIds.includes(choiceId));
 }
 
-function choiceClass(choiceId: string) {
-  // Während running: selected deutlich
+/**
+ * Review-Status pro Choice:
+ * - "correct-picked": korrekt & gewählt
+ * - "wrong-picked": falsch & gewählt
+ * - "missed-correct": korrekt aber NICHT gewählt
+ * - "not-picked": nicht gewählt & nicht korrekt
+ */
+type ReviewState =
+  | "correct-picked"
+  | "wrong-picked"
+  | "missed-correct"
+  | "not-picked";
+
+function getReviewState(choiceId: string): ReviewState {
+  const picked = isSelected(choiceId);
+  const correct = isCorrectChoice(choiceId);
+
+  if (picked && correct) return "correct-picked";
+  if (picked && !correct) return "wrong-picked";
+  if (!picked && correct) return "missed-correct";
+  return "not-picked";
+}
+
+function buttonType(choiceId: string) {
   if (props.status === "running") {
-    return isSelected(choiceId) ? "choice--selected" : "";
+    return isSelected(choiceId) ? "primary" : "default";
   }
 
-  // Review-Farben wie gehabt
-  if (isCorrectChoice(choiceId)) return "choice--correct";
-  if (isSelected(choiceId) && !isCorrectChoice(choiceId))
-    return "choice--wrong";
-  return "choice--neutral";
+  // REVIEW: Naive-Standardfarben
+  const s = getReviewState(choiceId);
+  if (s === "correct-picked") return "success";
+  if (s === "wrong-picked") return "warning"; // <- statt error
+  if (s === "missed-correct") return "success"; // richtig, aber nicht gewählt
+  return "default";
+}
+
+function buttonSecondary(choiceId: string) {
+  if (props.status === "running") return true;
+
+  // REVIEW: Unterscheidung „gewählt“ vs „nur korrekt“
+  const s = getReviewState(choiceId);
+  if (s === "correct-picked") return true; // voll sichtbar
+  if (s === "wrong-picked") return true; // voll sichtbar (warning)
+  if (s === "missed-correct") return true; // sichtbar, aber per Klasse abgeschwächt
+  return true;
+}
+
+function choiceClass(choiceId: string) {
+  if (props.status === "running") {
+    return isSelected(choiceId) ? "choice--picked" : "choice--idle";
+  }
+
+  const s = getReviewState(choiceId);
+  return {
+    "choice--picked": s === "correct-picked" || s === "wrong-picked",
+    "choice--missed": s === "missed-correct",
+    "choice--idle": s === "not-picked",
+  };
 }
 
 function onPick(choiceId: string) {
@@ -67,7 +114,7 @@ function onPick(choiceId: string) {
           <n-tag type="success" size="small"
             >Richtig: {{ props.correctCount }}</n-tag
           >
-          <n-tag type="error" size="small"
+          <n-tag type="warning" size="small"
             >Falsch: {{ props.wrongCount }}</n-tag
           >
         </n-space>
@@ -80,30 +127,35 @@ function onPick(choiceId: string) {
           v-for="c in props.question.choices"
           :key="c.id"
           strong
-          :type="
-            props.status === 'running'
-              ? isSelected(c.id)
-                ? 'primary'
-                : 'default'
-              : isCorrectChoice(c.id)
-                ? 'success'
-                : isSelected(c.id)
-                  ? 'error'
-                  : 'default'
-          "
-          :secondary="true"
+          :type="buttonType(c.id)"
+          :secondary="buttonSecondary(c.id)"
           style="width: 100%; justify-content: space-between"
           :class="choiceClass(c.id)"
           @click="onPick(c.id)">
           <span>{{ c.text }}</span>
+
+          <!-- kleine Status-Hints nur im Review -->
+          <template v-if="props.status === 'review'">
+            <n-text depth="3" style="font-size: 12px">
+              <template v-if="getReviewState(c.id) === 'correct-picked'"
+                >✓ gewählt</template
+              >
+              <template v-else-if="getReviewState(c.id) === 'wrong-picked'"
+                >✕ gewählt</template
+              >
+              <template v-else-if="getReviewState(c.id) === 'missed-correct'"
+                >✓ nicht gewählt</template
+              >
+              <template v-else>nicht gewählt</template>
+            </n-text>
+          </template>
         </n-button>
       </n-space>
 
-      <!-- Review hint -->
       <n-alert
         v-if="props.status === 'review'"
         :show-icon="false"
-        :type="props.isCorrect ? 'success' : 'error'">
+        :type="props.isCorrect ? 'success' : 'warning'">
         <n-space vertical :size="6">
           <div>
             <n-text strong>
@@ -144,55 +196,17 @@ function onPick(choiceId: string) {
 </template>
 
 <style scoped>
-.choice--selected,
-.choice--correct,
-.choice--wrong,
-.choice--neutral {
-  transition:
-    background-color 120ms ease,
-    border-color 120ms ease,
-    box-shadow 120ms ease,
-    opacity 120ms ease;
-}
+/* ein bisschen „Interpretation“ über Gewicht/Opacity – Farben kommen von Naive (type=...) */
 
-/* RUNNING: ausgewählt */
-.choice--selected {
-  border-color: var(--n-color-target);
-  /* nutzt primary-farbige “soft” Fläche – passt zu light/dark */
-  background-color: var(--n-color-target);
-  box-shadow: 0 0 0 2px var(--n-color-target);
-}
-
-/* REVIEW: correct */
-.choice--correct {
-  border-color: var(--n-color-target);
-  background-color: var(--n-color-target);
-  box-shadow: 0 0 0 2px var(--n-color-target);
-}
-
-/* REVIEW: wrong */
-.choice--wrong {
-  border-color: var(--n-color-target);
-  background-color: var(--n-color-target);
-  box-shadow: 0 0 0 2px var(--n-color-target);
-}
-
-/* Neutral: leicht zurücknehmen, aber nicht “grau kaputt” in dark */
-.choice--neutral {
-  opacity: 0.95;
-}
-
-/* Content emphasis */
-.choice--selected :deep(.n-button__content),
-.choice--correct :deep(.n-button__content),
-.choice--wrong :deep(.n-button__content) {
+.choice--picked :deep(.n-button__content) {
   font-weight: 800;
 }
 
-/* Optional: bessere Lesbarkeit bei farbigem Hintergrund */
-.choice--selected :deep(.n-button__content),
-.choice--correct :deep(.n-button__content),
-.choice--wrong :deep(.n-button__content) {
-  color: var(--n-text-color);
+.choice--missed {
+  opacity: 0.78; /* korrekt, aber nicht gewählt -> sichtbar, aber klar „nicht aktiv“ */
+}
+
+.choice--idle {
+  opacity: 0.95;
 }
 </style>
