@@ -153,13 +153,4 @@ function onPick(choiceId: string) {
 .choice--neutral {
   opacity: 0.9;
 }
-
-.choice--selected {
-  border-color: var(--n-color-target);
-  background: rgba(59, 130, 246, 0.14); /* blau-ish */
-}
-
-.choice--selected :deep(.n-button__content) {
-  font-weight: 800;
-}
 </style>
