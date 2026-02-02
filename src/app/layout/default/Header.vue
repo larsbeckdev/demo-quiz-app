@@ -18,6 +18,9 @@ function renderIcon() {
     <!-- <LogoPrimary class="h-full" /> -->
     <LogoSecondary class="h-full" />
   </div>
+  
+
+
   <div class="flex gap-2">
     <n-button tertiary :render-icon="renderIcon" class="flex center"><p class="hidden sm:block">
       Github
