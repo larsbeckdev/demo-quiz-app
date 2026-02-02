@@ -28,7 +28,7 @@ const currentIsCorrect = computed(() => {
     <n-space align="start" justify="space-between">
       <div>
         <n-h2 style="margin: 0">{{
-          quiz.state.quiz?.title ?? "Quiz App"
+          quiz.state.quiz?.title ?? ""
         }}</n-h2>
         <n-text v-if="quiz.state.quiz?.description" depth="3">
           {{ quiz.state.quiz.description }}
