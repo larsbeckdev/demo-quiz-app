@@ -9,7 +9,9 @@ import ThemeToggle from "@/features/theme-toggle/ThemeToggle.vue";
     <!-- <LogoPrimary class="h-full" /> -->
     <LogoSecondary class="h-full" />
   </div>
-  <ThemeToggle />
+  <div class="flex gap-2">
+    <ThemeToggle />
+  </div>
 </template>
 
 <style scoped></style>
