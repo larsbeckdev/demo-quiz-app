@@ -6,8 +6,8 @@ import { Github } from "lucide-vue-next";
 
 function renderIcon() {
   return h(NIcon, null, {
-    default: () => h(CashIcon)
-  })
+    default: () => h(Github),
+  });
 }
 </script>
 
@@ -17,7 +17,7 @@ function renderIcon() {
     <LogoSecondary class="h-full" />
   </div>
   <div class="flex gap-2">
-    <n-button :render-icon="Github">Default </n-button>
+    <n-button :render-icon="renderIcon">Default </n-button>
     <ThemeToggle />
   </div>
 </template>
