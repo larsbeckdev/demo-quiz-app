@@ -21,7 +21,7 @@ function renderIcon() {
   <n-space>
     <n-button circle>
       <template #icon>
-        <n-icon><CashIcon /></n-icon>
+        <n-icon><Github /></n-icon>
       </template>
     </n-button>
     <n-button tertiary :render-icon="renderIcon" class="flex center"
