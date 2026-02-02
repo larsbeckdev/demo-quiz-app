@@ -10,7 +10,13 @@ import { Github } from "lucide-vue-next";
   </div>
 
   <n-space>
-    <n-button tertiary>
+    <n-button
+      tertiary
+      tag="a"
+      href="https://github.com/deinname/deinrepo"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
       <n-icon>
         <Github />
       </n-icon>
