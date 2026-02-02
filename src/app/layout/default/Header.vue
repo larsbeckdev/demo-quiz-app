@@ -2,6 +2,7 @@
 import LogoPrimary from "@/components/logo/LogoPrimary.vue";
 import LogoSecondary from "@/components/logo/LogoSecondary.vue";
 import ThemeToggle from "@/features/theme-toggle/ThemeToggle.vue";
+import { h } from "vue";
 import { Github } from "lucide-vue-next";
 
 function renderIcon() {
@@ -17,7 +18,7 @@ function renderIcon() {
     <LogoSecondary class="h-full" />
   </div>
   <div class="flex gap-2">
-    <!-- <n-button :render-icon="renderIcon">Default </n-button> -->
+    <n-button :render-icon="renderIcon">Default </n-button>
     <ThemeToggle />
   </div>
 </template>
