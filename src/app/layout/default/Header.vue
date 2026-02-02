@@ -2,6 +2,7 @@
 import LogoPrimary from "@/components/logo/LogoPrimary.vue";
 import LogoSecondary from "@/components/logo/LogoSecondary.vue";
 import ThemeToggle from "@/features/theme-toggle/ThemeToggle.vue";
+
 </script>
 
 <template>
@@ -10,6 +11,9 @@ import ThemeToggle from "@/features/theme-toggle/ThemeToggle.vue";
     <LogoSecondary class="h-full" />
   </div>
   <div class="flex gap-2">
+    <Button>
+
+    </Button>
     <ThemeToggle />
   </div>
 </template>
