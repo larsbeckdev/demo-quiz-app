@@ -17,7 +17,7 @@ function renderIcon() {
     <LogoSecondary class="h-full" />
   </div>
   <div class="flex gap-2">
-    <n-button :render-icon="renderIcon">Default </n-button>
+    <!-- <n-button :render-icon="renderIcon">Default </n-button> -->
     <ThemeToggle />
   </div>
 </template>
