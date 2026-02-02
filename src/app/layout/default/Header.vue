@@ -16,10 +16,12 @@ import { Github } from "lucide-vue-next";
       href="https://github.com/larsbeckdev/demo-quiz-app"
       target="_blank"
       rel="noopener noreferrer">
-      <n-icon>
-        <Github />
-      </n-icon>
-      <span class="hidden sm:block">GitHub</span>
+      <span class="inline-flex items-center gap-2">
+        <n-icon>
+          <Github />
+        </n-icon>
+        <span class="hidden sm:block">GitHub</span>
+      </span>
     </n-button>
 
     <ThemeToggle />
