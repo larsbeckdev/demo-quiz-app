@@ -19,7 +19,7 @@ function renderIcon() {
     <LogoSecondary class="h-full" />
   </div>
   <n-space>
-    <n-button >
+    <n-button tertiary >
       <!-- <template #icon> -->
         <n-icon><Github /></n-icon>
         <p class="hidden sm:block">Github</p>
