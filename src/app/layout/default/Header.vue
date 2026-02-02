@@ -18,15 +18,14 @@ function renderIcon() {
     <!-- <LogoPrimary class="h-full" /> -->
     <LogoSecondary class="h-full" />
   </div>
-  
-
-
-  <div class="flex gap-2">
-    <n-button tertiary :render-icon="renderIcon" class="flex center"><p class="hidden sm:block">
-      Github
-    </p> </n-button>
+  <n-space>
+    <n-button tertiary :render-icon="renderIcon" class="flex center"
+      ><p class="hidden sm:block">Github</p>
+    </n-button>
     <ThemeToggle />
-  </div>
+  </n-space>
+
+  <!-- <div class="flex gap-2"></div> -->
 </template>
 
 <style scoped></style>
