@@ -19,7 +19,7 @@ function renderIcon() {
     <LogoSecondary class="h-full" />
   </div>
   <div class="flex gap-2">
-    <n-button :render-icon="renderIcon">Github </n-button>
+    <n-button tertiary round :render-icon="renderIcon">Github </n-button>
     <ThemeToggle />
   </div>
 </template>
