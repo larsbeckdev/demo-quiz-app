@@ -20,14 +20,10 @@ function renderIcon() {
   </div>
   <n-space>
     <n-button tertiary >
-      <!-- <template #icon> -->
-        <n-icon><Github /></n-icon>
-        <p class="hidden sm:block">Github</p>
-      <!-- </template> -->
+      <n-icon><Github /></n-icon>
+      <p class="hidden sm:block">Github</p>
     </n-button>
-    <n-button tertiary :render-icon="renderIcon" class="flex center"
-      ><p class="hidden sm:block">Github</p>
-    </n-button>
+
     <ThemeToggle />
   </n-space>
 
