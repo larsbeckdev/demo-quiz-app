@@ -11,9 +11,7 @@ import { Github } from "lucide-vue-next";
     <LogoSecondary class="h-full" />
   </div>
   <div class="flex gap-2">
-    <n-button>Default
-      
-    </n-button>
+    <n-button :render-icon="Github">Default </n-button>
     <ThemeToggle />
   </div>
 </template>
