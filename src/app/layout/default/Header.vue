@@ -11,7 +11,9 @@ import { Github } from "lucide-vue-next";
     <LogoSecondary class="h-full" />
   </div>
   <div class="flex gap-2">
-    <Button> </Button>
+    <n-button>Default
+      
+    </n-button>
     <ThemeToggle />
   </div>
 </template>
