@@ -13,10 +13,9 @@ import { Github } from "lucide-vue-next";
     <n-button
       tertiary
       tag="a"
-      href="https://github.com/deinname/deinrepo"
+      href="https://github.com/larsbeckdev/demo-quiz-app"
       target="_blank"
-      rel="noopener noreferrer"
-    >
+      rel="noopener noreferrer">
       <n-icon>
         <Github />
       </n-icon>
