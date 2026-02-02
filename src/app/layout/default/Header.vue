@@ -19,10 +19,11 @@ function renderIcon() {
     <LogoSecondary class="h-full" />
   </div>
   <n-space>
-    <n-button circle>
-      <template #icon>
+    <n-button >
+      <!-- <template #icon> -->
         <n-icon><Github /></n-icon>
-      </template>
+        <p class="hidden sm:block">Github</p>
+      <!-- </template> -->
     </n-button>
     <n-button tertiary :render-icon="renderIcon" class="flex center"
       ><p class="hidden sm:block">Github</p>
