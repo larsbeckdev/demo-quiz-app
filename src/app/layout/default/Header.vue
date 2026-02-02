@@ -3,6 +3,12 @@ import LogoPrimary from "@/components/logo/LogoPrimary.vue";
 import LogoSecondary from "@/components/logo/LogoSecondary.vue";
 import ThemeToggle from "@/features/theme-toggle/ThemeToggle.vue";
 import { Github } from "lucide-vue-next";
+
+function renderIcon() {
+  return h(NIcon, null, {
+    default: () => h(CashIcon)
+  })
+}
 </script>
 
 <template>
